@@ -13,7 +13,7 @@ const Navbar : React.FC = ()=>{
              </div>
              <nav className="flex justify-around gap-6">
                 
-                    <Link to="/">Home</Link>
+                    <Link to="/home">Home</Link>
                     <Link to="/blog">Blog</Link>
                     <Link to="/singlepost">Single Post</Link>
                     <Link to="/pages">Pages</Link>

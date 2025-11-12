@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import type {CardProps} from '../types/card'
 // import img1 from '../assets/cards/img1.png'
 
