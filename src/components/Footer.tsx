@@ -48,7 +48,8 @@ const Footer = ()=> {
         <div className="flex justify-center items-center gap-2">
             <img src={logo} alt="Footer Logo" className="text=[32px]"/>
             <div className="flex flex-col">
-            <p className="font-bold text-lg">Meta<span className="font-extrabold">Blog</span></p>
+            <h1 className="fond-semibold text-2xl">
+                  <span className="font-regular">Meta</span><span className="font-bold">Blog</span></h1>
             <p className="font-regular text-base">© JS Template 2023. All Rights Reserved.</p>
             </div>
         </div>

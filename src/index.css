@@ -6,9 +6,18 @@ body{
     overflow-x: hidden;
     padding: 0;
     width: 100%;
+    font-family: 'Work-sans', serif;
 }
 
 html{
     scroll-behavior: smooth;
     overflow-x: hidden;
+}
+
+p{
+    font-family: 'Source Serif Pro', serif;
+}
+
+h1{
+    font-family: 'Work-sans', serif;
 }

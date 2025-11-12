@@ -6,7 +6,7 @@ import  { cards } from "../data/blogData"
 const BlogList = ()=> {
   return (
     // <div className="flex-col justify-center items-center">
-      <div className="grid grid-cols-3 gap-1">
+      <div className="grid grid-cols-3 gap-1 ">
         {cards.map((card, index) => (
           <Card key={index} data={card} />
         ))}

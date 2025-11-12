@@ -9,9 +9,10 @@ const Navbar : React.FC = ()=>{
             <div className="flex justify-between items-center ml-10">
              <div className="flex gap-2 justify-center items-center">
                 <img src={logo} alt="logo"/>
-                <span>MetaBlog</span>
+                <h1 className="fond-semibold text-2xl">
+                  <span className="font-regular">Meta</span><span className="font-bold">Blog</span></h1>
              </div>
-             <nav className="flex justify-around gap-6">
+             <nav className="flex justify-around gap-6 font-regular text-[1rem] text-[#3B3C4A]">
                 
                     <Link to="/home">Home</Link>
                     <Link to="/blog">Blog</Link>

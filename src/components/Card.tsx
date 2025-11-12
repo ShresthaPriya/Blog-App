@@ -16,9 +16,9 @@ const Card = ({ data }: {data:CardProps}) =>{
                        <div className="flex justify-between gap-2">
                         <div className="flex items-center text-center gap-2 mt-[2rem]" >
                         <img src={data.profilePic} alt='profile' className='w-[32px] rounded-full'/>
-                        <p className="font-[Work Sans] text-base font-medium text-[#696A75]">{data.profileName}</p>
+                        <p className=" text-base font-[1rem] text-[#696A75]">{data.profileName}</p>
                        
-                        <p className="font-[Work Sans] text-base font-normal text-[#696A75] ml-[3rem]">{data.fullDate}</p>
+                        <p className="text-base font-normal text-[#696A75] ml-[2rem]">{data.fullDate}</p>
                        </div>
                        </div>
 
