@@ -67,10 +67,7 @@ const Register: React.FC = () => {
       type="password"
       placeholder="Enter your password"
       className="w-full border border-gray-300 rounded-md pl-1 mt-2 pr-3 py-2 focus:outline-none"
-      {...register("password", {
-        // required: "Password is required",
-        minLength: { value: 6, message: "Password must be at least 6 characters" }
-      })}
+      {...register("password")}
     />
     {errors.password && <Alert message={errors.password.message || ""} type="error" />}
     <div className="mb-4 text-start">
@@ -79,7 +76,7 @@ const Register: React.FC = () => {
   </label>
   <select
     id="role"
-    {...register("role", { required: "Role is required" })}
+    {...register("role")}
     className="w-full border border-gray-300 rounded-md pl-3 pr-3 mt-2 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
     defaultValue=""
   >
