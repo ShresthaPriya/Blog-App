@@ -16,6 +16,7 @@ import profile3 from '../assets/profile/profile3.jpg'
 export const cards = [
     { 
       image: img1,
+      // description: ""
       profilePic: profile1,
       profileName: "Tracey Wilsonson",
       fullDate: "August 20, 2022",

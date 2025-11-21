@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+    --font-work-sans: "Work Sans", sans-serif;
+}
+
 body{
     max-width:1440px;
     margin: 0 auto;
@@ -14,10 +18,3 @@ html{
     overflow-x: hidden;
 }
 
-p{
-    font-family: 'Source Serif Pro', serif;
-}
-
-h1{
-    font-family: 'Work-sans', serif;
-}

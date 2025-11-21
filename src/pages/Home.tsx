@@ -1,21 +1,12 @@
-
-import Hero from "../components/Hero"
+import Hero from "../components/Hero";
 // import Card from "../components/Card"
 import BlogList from "../components/BlogList";
 
-
-
-
-const Home  = () => {
-
-  
+const Home = () => {
   return (
     <div>
-      
       <Hero />
-      <BlogList/>
-     
-
+      <BlogList />
     </div>
   );
 };

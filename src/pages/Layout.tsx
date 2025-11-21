@@ -1,17 +1,16 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import Footer from '../components/Footer'
+import Footer from "../components/Footer";
 
-const Layout = ()=>{
-    return(
-   <>
-     <Navbar />
-    <Outlet/>
-    <Footer />
-      
+const Layout = () => {
+  return (
+    <main className="font-work-sans">
+      <Navbar />
 
-    </>
-    );
-}
+      <Outlet />
+      <Footer />
+    </main>
+  );
+};
 
 export default Layout;

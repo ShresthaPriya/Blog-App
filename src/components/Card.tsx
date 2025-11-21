@@ -1,29 +1,30 @@
 // import React from 'react'
-import type {CardProps} from '../types/card'
+import type { CardProps } from '../types/card'
 // import img1 from '../assets/cards/img1.png'
 
-
-
-const Card = ({ data }: {data:CardProps}) =>{
+const Card = ({ data }: { data: CardProps }) => {
   return (
-    
-    <div className=' border-1 border-[#E8E8EA] rounded-2xl m-10 p-[1rem]'>
-     
-            {/* <img src={image} alt='profile' className='w-[32px]'/> */}
-            <img src={data.image} alt="logo" className='w-200 h-50 rounded-xl'/>
-            <button className='bg-[#4B6BFB0D] top-90 text-[#4B6BFB] mt-[2rem] p-2 rounded-md block'>Technology</button>
-                       <h1 className='text-center font-[500] text-2xl top-100 text-black mt-[2rem] text-start'>The Impact of Technology on the Workplace:<br/>How Technology is Changing</h1>
-                       <div className="flex justify-between gap-2">
-                        <div className="flex items-center text-center gap-2 mt-[2rem]" >
-                        <img src={data.profilePic} alt='profile' className='w-[32px] rounded-full'/>
-                        <p className=" text-base font-[1rem] text-[#696A75]">{data.profileName}</p>
-                       
-                        <p className="text-base font-normal text-[#696A75] ml-[2rem]">{data.fullDate}</p>
-                       </div>
-                       </div>
+
+    <div className='flex flex-col gap-4 border border-[#E8E8EA] rounded-2xl m-10 p-4'>
+      {/* <img src={image} alt='profile' className='w-[32px]'/> */}
+      <div className="digg">
+      <img src={data.image} alt="logo" className='w-200 h-50 rounded-xl object-cover' />
+      </div>
+      <div className="flex flex-col gap-4">
+      <span className='bg-[#4B6BFB0D] text-[#4B6BFB] p-2 rounded-md w-30'>Technology</span>
+      <h1 className='text-start font-medium text-2xl top-100 text-blac'>The Impact of Technology on the Workplace:<br />How Technology is Changing</h1>
+      <div className="flex items-center justify-between" >
+        <div className='flex items-center gap-2'>
+          <img src={data.profilePic} alt='profile' className='w-8 rounded-full' />
+          <p className=" text-base font-[1rem] text-[#696A75]">{data.profileName}</p>
+
+        </div>
+        <p className="text-base font-normal text-[#696A75] ml-8">{data.fullDate}</p>
+        </div>
+      </div>
 
     </div>
-    
+
   )
 }
 
