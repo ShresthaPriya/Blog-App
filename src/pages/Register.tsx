@@ -7,24 +7,23 @@ import InputForm from "../components/FormInput";
 import Button from "../components/Button";
 import Alert from "../components/Alert";
 
-interface RegisterInputs {
-  name: string;
-  email: string;
-  password: string;
-  role: string;
-}
+import { zodResolver } from "@hookform/resolvers/zod";
+import { registrationSchema} from "../validator/userValidator";
+import type { RegisterInput } from "../validator/userValidator";
 
 const Register: React.FC = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<RegisterInputs>();
+  const { register, handleSubmit, formState: { errors } } = useForm<RegisterInput>({
+    resolver: zodResolver(registrationSchema)
+  });
   const [apiError, setApiError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<RegisterInputs> = async (data) => {
+  const onSubmit: SubmitHandler<RegisterInput> = async (data: RegisterInput) => {
     setApiError(null);
     try {
       const response = await axios.post("http://localhost:4000/api/v1/user/register/", data);
-      if (response.data === "Already registered") {
-        setApiError("E-mail already registered! Please login.");
+      if (response.data === "User already exists") {
+        setApiError("User already exists");
       } else {
         alert("Registered successfully! Please login.");
         navigate("/login");
@@ -48,7 +47,7 @@ const Register: React.FC = () => {
       id="name"
       placeholder="Enter your name"
       className="w-full border border-gray-300 rounded-md pl-1 pr-3 mt-2 py-2 focus:outline-none"
-      {...register("name", { required: "Name is required" })}
+      {...register("name")}
     />
     {errors.name && <Alert message={errors.name.message || ""} type="error" />}
 
@@ -58,7 +57,7 @@ const Register: React.FC = () => {
       type="email"
       placeholder="Enter your email"
       className="w-full border border-gray-300 rounded-md pl-1  mt-2 pr-3 py-2 focus:outline-none"
-      {...register("email", { required: "Email is required" })}
+      {...register("email")}
     />
     {errors.email && <Alert message={errors.email.message || ""} type="error" />}
 
@@ -69,7 +68,7 @@ const Register: React.FC = () => {
       placeholder="Enter your password"
       className="w-full border border-gray-300 rounded-md pl-1 mt-2 pr-3 py-2 focus:outline-none"
       {...register("password", {
-        required: "Password is required",
+        // required: "Password is required",
         minLength: { value: 6, message: "Password must be at least 6 characters" }
       })}
     />

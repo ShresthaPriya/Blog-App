@@ -8,11 +8,11 @@ interface AlertProps {
 const Alert: React.FC<AlertProps> = ({ type, message }) => {
   const bgColor =
     type === "success" ? "alert-success" :
-    type === "error" ? "alert-danger" :
+    type === "error" ? "alert-error" :
     "alert-info";
 
   return (
-    <div className={`alert ${bgColor} text-center`} role="alert">
+    <div className={`alert ${bgColor} text-center text-red-500 text-sm mt-1`} role="alert">
       {message}
     </div>
   );

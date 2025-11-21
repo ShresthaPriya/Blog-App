@@ -7,23 +7,25 @@ import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-interface LoginInputs {
-  email: string;
-  password: string;
-}
+import type { LoginInput } from '../validator/userValidator';
+import { loginSchema } from '../validator/userValidator';
+import { zodResolver } from '@hookform/resolvers/zod';
+
 
 const Login: React.FC = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<LoginInputs>();
+  const { register, handleSubmit, formState: { errors } } = useForm<LoginInput>({
+    resolver: zodResolver(loginSchema)
+  });
   const [apiError, setApiError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<LoginInputs> = async (data) => {
+  const onSubmit: SubmitHandler<LoginInput> = async (data: LoginInput) => {
     setApiError(null);
     try {
       const response = await axios.post("http://localhost:4000/api/v1/user/login", data);
 
       if (response.data?.message === "Invalid credentials") {
-        setApiError("Invalid email or password!");
+        setApiError("Invalid crendential!");
       } else {
         alert("Login successful!");
         navigate("/home"); 
@@ -47,7 +49,7 @@ const Login: React.FC = () => {
             type="email"
             placeholder="Enter your email"
             className="w-full border border-gray-300 rounded-md pl-3 pr-3 mt-2 py-2 focus:outline-none"
-            {...register("email", { required: "Email is required" })}
+            {...register("email")}
           />
           {errors.email && <Alert message={errors.email.message || ""} type="error" />}
 
@@ -57,7 +59,7 @@ const Login: React.FC = () => {
             type="password"
             placeholder="Enter your password"
             className="w-full border border-gray-300 rounded-md pl-3 pr-3 mt-2 py-2 focus:outline-none"
-            {...register("password", { required: "Password is required" })}
+            {...register("password")}
           />
           {errors.password && <Alert message={errors.password.message || ""} type="error" />}
 
