@@ -6,7 +6,6 @@ const Layout = () => {
   return (
     <main className="font-work-sans">
       <Navbar />
-
       <Outlet />
       <Footer />
     </main>

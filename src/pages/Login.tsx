@@ -6,6 +6,8 @@ import Alert from '../components/Alert';
 import type { SubmitHandler } from "react-hook-form"; 
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/authContext";
+
 
 import type { LoginInput } from '../validator/userValidator';
 import { loginSchema } from '../validator/userValidator';
@@ -14,24 +16,35 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 const Login: React.FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<LoginInput>({
-    resolver: zodResolver(loginSchema)
+    resolver: zodResolver(loginSchema),
   });
-  const [apiError, setApiError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { login } = useAuth();
+  const [apiError, setApiError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit: SubmitHandler<LoginInput> = async (data: LoginInput) => {
+  const onSubmit: SubmitHandler<LoginInput> = async (data) => {
     setApiError(null);
+    setLoading(true);
     try {
       const response = await axios.post("http://localhost:4000/api/v1/user/login", data);
 
-      if (response.data?.message === "Invalid credentials") {
-        setApiError("Invalid crendential!");
-      } else {
-        alert("Login successful!");
-        navigate("/home"); 
+      if (!response.data.user) {
+        setApiError("Invalid credentials");
+        return;
       }
+
+      // Save token in localStorage
+      localStorage.setItem("token", response.data.token);
+
+      // Login into AuthContext
+      login(response.data.user);
+
+      navigate("/home");
     } catch (err: any) {
       setApiError(err.response?.data?.message || "Something went wrong!");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -65,9 +78,11 @@ const Login: React.FC = () => {
 
           <Button
             type="submit"
-            text="Login"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-200"
-          />
+            text={loading ? "Loading..." : "Login"}
+ className={`w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-200 ${
+    loading ? "opacity-50 cursor-not-allowed" : ""
+  }`}
+  disabled={loading}          />
         </form>
 
         <p className="text-gray-600 mt-4 text-center">
