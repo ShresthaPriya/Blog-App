@@ -34,21 +34,18 @@ const Navbar = () => {
         )}
       </nav>
 
-      {/* Right: Search + Profile/Login */}
       <div className="flex items-center gap-4">
-        {/* Search Box */}
         <div className="relative bg-[#F4F4F5] rounded-sm px-3 py-2">
           <input type="text" placeholder="Search" className="bg-transparent outline-none w-48" />
           <FaSearch className="absolute right-3 top-3 text-[#52525B]" />
         </div>
 
-        {/* Profile / Login */}
         {!isAuthenticated && <Link to="/login" className="text-[#3B3C4A] font-medium">Login</Link>}
 
         {isAuthenticated && (
           <div className="relative group">
             <img src={user.profile ? `/uploads/${user.profile}` : profile} alt="profile" className="w-8 h-8 rounded-full cursor-pointer" />
-            <div className="absolute right-0 mt-2 w-48 bg-[#CFCFCF] rounded shadow-md hidden group-hover:block z-50">
+            <div className="absolute right-0 mt-2 w-48 bg-[#ffffff] rounded shadow-md hidden group-hover:block z-50">
               <div className="p-2">
                 <p className="font-semibold truncate">{user.name}</p>
                 <p className="text-sm text-gray-600 truncate">{user.email}</p>
