@@ -3,6 +3,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 interface FormInputs {
   title: string;
@@ -55,17 +56,17 @@ const CreatePost: React.FC = () => {
             "Content-Type": "multipart/form-data" },
       });
 
-      setMessage({ type: "success", text: "Post created successfully!" });
+      toast.success("Post created successfully!");
 
       reset();
       setPreview(null);
 
       setTimeout(() => navigate("/my-posts"), 1200);
     } catch (error: any) {
-      setMessage({
-        type: "error",
-        text: error.response?.data?.message || "Something went wrong.",
-      });
+     
+       
+      toast.error(error.response?.data?.message || "Something went wrong.");
+  
     }
   };
 
